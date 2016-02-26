@@ -19,7 +19,12 @@ namespace simonSaysProject
 
         private void startButton_Click(object sender, EventArgs e)
         {
-
+            //Move to game screen
+            gameScreen gs = new gameScreen();
+            Form f = this.FindForm();
+            f.Controls.Add(gs);
+            //Remove Game Screen
+            f.Controls.Remove(this);
         }
 
         private void closeButton_Click(object sender, EventArgs e)
