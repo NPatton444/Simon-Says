@@ -96,6 +96,7 @@
             this.Controls.Add(this.scoreLabel);
             this.Name = "gameScreen";
             this.Size = new System.Drawing.Size(600, 600);
+            this.Load += new System.EventHandler(this.gameScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
