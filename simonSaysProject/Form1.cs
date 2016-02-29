@@ -13,7 +13,7 @@ namespace simonSaysProject
     public partial class Form1 : Form
     {
         //Pattern List
-        public static List<int> pattern = new List<int>;
+        public static List<int> pattern = new List<int>();
         public Form1()
         {
             InitializeComponent();

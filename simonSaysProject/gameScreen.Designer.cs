@@ -48,14 +48,15 @@
             // 
             // greenButton
             // 
-            this.greenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.greenButton.BackColor = System.Drawing.Color.Green;
             this.greenButton.FlatAppearance.BorderSize = 0;
             this.greenButton.Location = new System.Drawing.Point(7, 142);
-            this.greenButton.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.greenButton.Margin = new System.Windows.Forms.Padding(0);
             this.greenButton.Name = "greenButton";
             this.greenButton.Size = new System.Drawing.Size(200, 200);
             this.greenButton.TabIndex = 2;
             this.greenButton.UseVisualStyleBackColor = false;
+            this.greenButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.greenButton_MouseDown);
             // 
             // redButton
             // 
@@ -65,6 +66,7 @@
             this.redButton.Size = new System.Drawing.Size(200, 200);
             this.redButton.TabIndex = 3;
             this.redButton.UseVisualStyleBackColor = false;
+            this.redButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.redButton_MouseDown);
             // 
             // blueButton
             // 
@@ -74,6 +76,7 @@
             this.blueButton.Size = new System.Drawing.Size(200, 200);
             this.blueButton.TabIndex = 4;
             this.blueButton.UseVisualStyleBackColor = false;
+            this.blueButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.blueButton_MouseDown);
             // 
             // yellowButton
             // 
@@ -83,6 +86,7 @@
             this.yellowButton.Size = new System.Drawing.Size(200, 200);
             this.yellowButton.TabIndex = 5;
             this.yellowButton.UseVisualStyleBackColor = false;
+            this.yellowButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.yellowButton_MouseDown);
             // 
             // gameScreen
             // 

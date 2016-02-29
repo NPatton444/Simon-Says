@@ -21,6 +21,11 @@ namespace simonSaysProject
         SoundPlayer yellowPlayer = new SoundPlayer(Properties.Resources.yellow);
         SoundPlayer mistakePlayer = new SoundPlayer(Properties.Resources.mistake);
 
+        //Guess index
+        int index = 0;
+
+        int score;
+
         public gameScreen()
         {
             InitializeComponent();
@@ -37,9 +42,8 @@ namespace simonSaysProject
             //Clear Pattern List at the Start of the Game
             Form1.pattern.Clear();
 
-            //Game Starting Pause
+            //Game Starting Refresh
             this.Refresh();
-            Thread.Sleep(5000);
 
             //Go to Computer Turn method
             computerTurn();
@@ -47,6 +51,8 @@ namespace simonSaysProject
 
         private void computerTurn()
         {
+
+            this.Refresh();
             //Random Number Generator to pick Colour
             Random randGen = new Random();
             int randColour = randGen.Next(0, 4);
@@ -54,49 +60,195 @@ namespace simonSaysProject
             //Add randColour to Pattern list
             Form1.pattern.Add(randColour);
 
-            for(int i = 0; i < Form1.pattern.Count(); i++)
+            //Display Score
+            score = Form1.pattern.Count() - 1;
+            scoreLabel.Text = Convert.ToString(score);
+
+            for (int i = 0; i < Form1.pattern.Count(); i++)
             {
                 //Button Flash and Play Sound
                 if (Form1.pattern[i] == 0)
                 {
+                    Thread.Sleep(500);
+                    this.Refresh();
+
                     //Play Sound
                     greenPlayer.Play();
 
                     //Flash Green Button
                     greenButton.BackColor = Color.LightGreen;
+                    Thread.Sleep(500);
+                    greenButton.BackColor = Color.Green;
                 }
 
                 else if(Form1.pattern[i] == 1)
                 {
+                    Thread.Sleep(500);
+                    this.Refresh();
+
                     //Play Sound
                     redPlayer.Play();
 
                     //Flash Red Button
                     redButton.BackColor = Color.LightCoral;
+                    Thread.Sleep(500);
+                    redButton.BackColor = Color.Red;
                 }
 
                 else if(Form1.pattern[i] == 2)
                 {
+                    Thread.Sleep(500);
+                    this.Refresh();
+
                     //Play Sound
                     bluePlayer.Play();
 
                     //Flash Blue Button
                     blueButton.BackColor = Color.LightBlue;
+                    Thread.Sleep(500);
+                    blueButton.BackColor = Color.Blue;
                 }
 
                 else if(Form1.pattern[i] == 3)
                 {
+                    Thread.Sleep(500);
+                    this.Refresh();
+
                     //Play Sound
                     yellowPlayer.Play();
 
                     //Flash Yellow Button
                     yellowButton.BackColor = Color.LightYellow;
+                    Thread.Sleep(500);
+                    yellowButton.BackColor = Color.Yellow;
                 }
 
                 //Pause and Refresh
                 Thread.Sleep(1000);
                 this.Refresh();
             }
+        }
+
+        #region Player Turn
+
+        private void greenButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(Form1.pattern[index] == 0)
+            {
+                //Play Sound
+                greenPlayer.Play();
+
+                //Flash Green Button
+                greenButton.BackColor = Color.LightGreen;
+                Thread.Sleep(500);
+                greenButton.BackColor = Color.Green;
+
+                index++;
+
+                //Run Computer Turn Method
+                if(index == Form1.pattern.Count())
+                {
+                    computerTurn();
+                }
+            }
+
+            else
+            {
+                //Go to Game over
+                gameOver();
+            }
+        }
+
+        private void redButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (Form1.pattern[index] == 1)
+            {
+                //Play Sound
+                redPlayer.Play();
+
+                //Flash Green Button
+                redButton.BackColor = Color.LightCoral;
+                Thread.Sleep(500);
+                redButton.BackColor = Color.Red;
+
+                index++;
+
+                //Run Computer Turn Method
+                if (index == Form1.pattern.Count())
+                {
+                    computerTurn();
+                }
+            }
+
+            else
+            {
+                //Go to Game over
+                gameOver();
+            }
+        }
+
+        private void blueButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (Form1.pattern[index] == 2)
+            {
+                //Play Sound
+                bluePlayer.Play();
+
+                //Flash Green Button
+                blueButton.BackColor = Color.LightBlue;
+                Thread.Sleep(500);
+                blueButton.BackColor = Color.Blue;
+
+                index++;
+
+                //Run Computer Turn Method
+                if (index == Form1.pattern.Count())
+                {
+                    computerTurn();
+                }
+            }
+
+            else
+            {
+                //Go to Game over
+                gameOver();
+            }
+        }
+
+        private void yellowButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (Form1.pattern[index] == 3)
+            {
+                //Play Sound
+                yellowPlayer.Play();
+
+                //Flash Green Button
+                yellowButton.BackColor = Color.LightYellow;
+                Thread.Sleep(500);
+                yellowButton.BackColor = Color.Yellow;
+
+                index++;
+
+                //Run Computer Turn Method
+                if (index == Form1.pattern.Count())
+                {
+                    computerTurn();
+                }
+            }
+
+            else
+            {
+                //Go to Game over
+                gameOver();
+            }
+        }
+
+        #endregion
+
+        private void gameOver()
+        {
+            //Play Mistake Sound 
+            mistakePlayer.Play();
         }
     }
 }

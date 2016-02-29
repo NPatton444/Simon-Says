@@ -22,9 +22,11 @@ namespace simonSaysProject
             //Move to game screen
             gameScreen gs = new gameScreen();
             Form f = this.FindForm();
-            f.Controls.Add(gs);
-            //Remove Game Screen
+
+            //Remove Main Screen
             f.Controls.Remove(this);
+
+            f.Controls.Add(gs);
         }
 
         private void closeButton_Click(object sender, EventArgs e)
