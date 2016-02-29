@@ -8,11 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace simonSaysProject
 {
     public partial class gameScreen : UserControl
     {
+        //Sound Player
+        SoundPlayer redPlayer = new SoundPlayer(Properties.Resources.red);
+        SoundPlayer bluePlayer = new SoundPlayer(Properties.Resources.blue);
+        SoundPlayer greenPlayer = new SoundPlayer(Properties.Resources.green);
+        SoundPlayer yellowPlayer = new SoundPlayer(Properties.Resources.yellow);
+        SoundPlayer mistakePlayer = new SoundPlayer(Properties.Resources.mistake);
+
         public gameScreen()
         {
             InitializeComponent();
@@ -52,6 +60,7 @@ namespace simonSaysProject
                 if (Form1.pattern[i] == 0)
                 {
                     //Play Sound
+                    greenPlayer.Play();
 
                     //Flash Green Button
                     greenButton.BackColor = Color.LightGreen;
@@ -60,6 +69,7 @@ namespace simonSaysProject
                 else if(Form1.pattern[i] == 1)
                 {
                     //Play Sound
+                    redPlayer.Play();
 
                     //Flash Red Button
                     redButton.BackColor = Color.LightCoral;
@@ -68,6 +78,7 @@ namespace simonSaysProject
                 else if(Form1.pattern[i] == 2)
                 {
                     //Play Sound
+                    bluePlayer.Play();
 
                     //Flash Blue Button
                     blueButton.BackColor = Color.LightBlue;
@@ -76,10 +87,15 @@ namespace simonSaysProject
                 else if(Form1.pattern[i] == 3)
                 {
                     //Play Sound
+                    yellowPlayer.Play();
 
                     //Flash Yellow Button
                     yellowButton.BackColor = Color.LightYellow;
                 }
+
+                //Pause and Refresh
+                Thread.Sleep(1000);
+                this.Refresh();
             }
         }
     }

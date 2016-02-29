@@ -94,6 +94,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\simon sounds.zip" />
     <None Include="Resources\simonSays.psd" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +108,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\simonSays.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mistake.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
