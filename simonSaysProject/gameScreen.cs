@@ -152,6 +152,9 @@ namespace simonSaysProject
                 this.Refresh();
             }
 
+            //Pause and Refresh Between Computer Turn and Player Turn
+            Thread.Sleep(500);
+
             //Re enable buttons
             redButton.Enabled = true;
             greenButton.Enabled = true;
@@ -180,6 +183,7 @@ namespace simonSaysProject
                 //Run Computer Turn Method
                 if (index == Form1.pattern.Count())
                 {
+                    Thread.Sleep(500);
                     computerTurn();
                 }
             }
@@ -210,6 +214,7 @@ namespace simonSaysProject
                 //Run Computer Turn Method
                 if (index == Form1.pattern.Count())
                 {
+                    Thread.Sleep(500);
                     computerTurn();
                 }
             }
@@ -240,6 +245,7 @@ namespace simonSaysProject
                 //Run Computer Turn Method
                 if (index == Form1.pattern.Count())
                 {
+                    Thread.Sleep(500);
                     computerTurn();
                 }
             }
@@ -270,6 +276,7 @@ namespace simonSaysProject
                 //Run Computer Turn Method
                 if (index == Form1.pattern.Count())
                 {
+                    Thread.Sleep(500);
                     computerTurn();
                 }
             }
