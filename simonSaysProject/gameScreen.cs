@@ -51,8 +51,21 @@ namespace simonSaysProject
 
         private void computerTurn()
         {
+            //Make Buttons un clickable during computer turn
+            redButton.Enabled = false;
+            redButton.BackColor = Color.Red;
+
+            greenButton.Enabled = false;
+            greenButton.BackColor = Color.Green;
+
+            blueButton.Enabled = false;
+            blueButton.BackColor = Color.Blue;
+            
+            yellowButton.Enabled = false;
+            yellowButton.BackColor = Color.Yellow;
 
             this.Refresh();
+
             //Random Number Generator to pick Colour
             Random randGen = new Random();
             int randColour = randGen.Next(0, 4);
@@ -138,6 +151,12 @@ namespace simonSaysProject
                 Thread.Sleep(1000);
                 this.Refresh();
             }
+
+            //Re enable buttons
+            redButton.Enabled = true;
+            greenButton.Enabled = true;
+            blueButton.Enabled = true;
+            yellowButton.Enabled = true;
         }
 
         #region Player Turn

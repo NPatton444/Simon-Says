@@ -56,6 +56,7 @@
             this.scoreLabel2.Name = "scoreLabel2";
             this.scoreLabel2.Size = new System.Drawing.Size(0, 25);
             this.scoreLabel2.TabIndex = 2;
+            this.scoreLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // replayButton
             // 
@@ -66,6 +67,7 @@
             this.replayButton.TabIndex = 3;
             this.replayButton.Text = "Play Again?";
             this.replayButton.UseVisualStyleBackColor = true;
+            this.replayButton.Click += new System.EventHandler(this.replayButton_Click);
             // 
             // closeButton
             // 
@@ -76,6 +78,7 @@
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // gameOverScreen
             // 
