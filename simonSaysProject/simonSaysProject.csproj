@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="gameOverScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="gameOverScreen.Designer.cs">
+      <DependentUpon>gameOverScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="gameScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gameOverScreen.resx">
+      <DependentUpon>gameOverScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gameScreen.resx">
       <DependentUpon>gameScreen.cs</DependentUpon>

@@ -24,7 +24,7 @@ namespace simonSaysProject
         //Guess index
         int index = 0;
 
-        int score;
+        public static int score;
 
         public gameScreen()
         {
@@ -62,7 +62,10 @@ namespace simonSaysProject
 
             //Display Score
             score = Form1.pattern.Count() - 1;
-            scoreLabel.Text = Convert.ToString(score);
+            scoreLabel.Text = "Score: " + Convert.ToString(score);
+
+            //Reset Index
+            index = 0;
 
             for (int i = 0; i < Form1.pattern.Count(); i++)
             {
@@ -77,11 +80,13 @@ namespace simonSaysProject
 
                     //Flash Green Button
                     greenButton.BackColor = Color.LightGreen;
-                    Thread.Sleep(500);
+                    this.Refresh();
+                    Thread.Sleep(100);
                     greenButton.BackColor = Color.Green;
+                    this.Refresh();
                 }
 
-                else if(Form1.pattern[i] == 1)
+                else if (Form1.pattern[i] == 1)
                 {
                     Thread.Sleep(500);
                     this.Refresh();
@@ -91,11 +96,13 @@ namespace simonSaysProject
 
                     //Flash Red Button
                     redButton.BackColor = Color.LightCoral;
-                    Thread.Sleep(500);
+                    this.Refresh();
+                    Thread.Sleep(100);
                     redButton.BackColor = Color.Red;
+                    this.Refresh();
                 }
 
-                else if(Form1.pattern[i] == 2)
+                else if (Form1.pattern[i] == 2)
                 {
                     Thread.Sleep(500);
                     this.Refresh();
@@ -105,11 +112,13 @@ namespace simonSaysProject
 
                     //Flash Blue Button
                     blueButton.BackColor = Color.LightBlue;
-                    Thread.Sleep(500);
+                    this.Refresh();
+                    Thread.Sleep(100);
                     blueButton.BackColor = Color.Blue;
+                    this.Refresh();
                 }
 
-                else if(Form1.pattern[i] == 3)
+                else if (Form1.pattern[i] == 3)
                 {
                     Thread.Sleep(500);
                     this.Refresh();
@@ -119,8 +128,10 @@ namespace simonSaysProject
 
                     //Flash Yellow Button
                     yellowButton.BackColor = Color.LightYellow;
-                    Thread.Sleep(500);
+                    this.Refresh();
+                    Thread.Sleep(100);
                     yellowButton.BackColor = Color.Yellow;
+                    this.Refresh();
                 }
 
                 //Pause and Refresh
@@ -133,20 +144,22 @@ namespace simonSaysProject
 
         private void greenButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if(Form1.pattern[index] == 0)
+            if (Form1.pattern[index] == 0)
             {
                 //Play Sound
                 greenPlayer.Play();
 
                 //Flash Green Button
                 greenButton.BackColor = Color.LightGreen;
-                Thread.Sleep(500);
+                this.Refresh();
+                Thread.Sleep(100);
                 greenButton.BackColor = Color.Green;
+                this.Refresh();
 
                 index++;
 
                 //Run Computer Turn Method
-                if(index == Form1.pattern.Count())
+                if (index == Form1.pattern.Count())
                 {
                     computerTurn();
                 }
@@ -166,10 +179,12 @@ namespace simonSaysProject
                 //Play Sound
                 redPlayer.Play();
 
-                //Flash Green Button
+                //Flash Red Button
                 redButton.BackColor = Color.LightCoral;
-                Thread.Sleep(500);
+                this.Refresh();
+                Thread.Sleep(100);
                 redButton.BackColor = Color.Red;
+                this.Refresh();
 
                 index++;
 
@@ -194,10 +209,12 @@ namespace simonSaysProject
                 //Play Sound
                 bluePlayer.Play();
 
-                //Flash Green Button
+                //Flash Blue Button
                 blueButton.BackColor = Color.LightBlue;
-                Thread.Sleep(500);
+                this.Refresh();
+                Thread.Sleep(100);
                 blueButton.BackColor = Color.Blue;
+                this.Refresh();
 
                 index++;
 
@@ -222,10 +239,12 @@ namespace simonSaysProject
                 //Play Sound
                 yellowPlayer.Play();
 
-                //Flash Green Button
+                //Flash Yellow Button
                 yellowButton.BackColor = Color.LightYellow;
-                Thread.Sleep(500);
+                this.Refresh();
+                Thread.Sleep(100);
                 yellowButton.BackColor = Color.Yellow;
+                this.Refresh();
 
                 index++;
 
@@ -249,6 +268,15 @@ namespace simonSaysProject
         {
             //Play Mistake Sound 
             mistakePlayer.Play();
+
+            //Go to game over Screen
+            gameOverScreen gos = new gameOverScreen();
+            Form f = this.FindForm();
+
+            //Remove Main Screen
+            f.Controls.Remove(this);
+
+            f.Controls.Add(gos);
         }
     }
 }

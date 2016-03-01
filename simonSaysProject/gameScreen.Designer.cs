@@ -42,9 +42,9 @@
             this.scoreLabel.ForeColor = System.Drawing.Color.White;
             this.scoreLabel.Location = new System.Drawing.Point(21, 21);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(142, 38);
+            this.scoreLabel.Size = new System.Drawing.Size(165, 38);
             this.scoreLabel.TabIndex = 1;
-            this.scoreLabel.Text = "Score: ";
+            this.scoreLabel.Text = "Score: 0";
             // 
             // greenButton
             // 
