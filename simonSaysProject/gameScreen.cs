@@ -26,6 +26,8 @@ namespace simonSaysProject
 
         public static int score;
 
+        int pauseIndex = 1000;
+
         public gameScreen()
         {
             InitializeComponent();
@@ -51,6 +53,12 @@ namespace simonSaysProject
 
         private void computerTurn()
         {
+            //Decrease Pause Index to make game faster the longer it's been player
+            if (Form1.pattern.Count() % 5 == 0)
+            {
+                pauseIndex -= 50;
+            }
+            
             //Make Buttons un clickable during computer turn
             redButton.Enabled = false;
             redButton.BackColor = Color.Red;
@@ -148,7 +156,7 @@ namespace simonSaysProject
                 }
 
                 //Pause and Refresh
-                Thread.Sleep(1000);
+                Thread.Sleep(pauseIndex);
                 this.Refresh();
             }
 
