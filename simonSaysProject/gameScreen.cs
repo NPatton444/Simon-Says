@@ -156,7 +156,7 @@ namespace simonSaysProject
                 }
 
                 //Pause and Refresh
-                Thread.Sleep(pauseIndex);
+                Thread.Sleep(Convert.ToInt16(pauseIndex));
                 this.Refresh();
             }
 
