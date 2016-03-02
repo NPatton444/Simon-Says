@@ -26,7 +26,7 @@ namespace simonSaysProject
 
         public static int score;
 
-        int pauseIndex = 1000;
+        double pauseIndex = 1000;
 
         public gameScreen()
         {
@@ -56,7 +56,7 @@ namespace simonSaysProject
             //Decrease Pause Index to make game faster the longer it's been player
             if (Form1.pattern.Count() % 5 == 0)
             {
-                pauseIndex -= 50;
+                pauseIndex = pauseIndex * 0.85;
             }
             
             //Make Buttons un clickable during computer turn
