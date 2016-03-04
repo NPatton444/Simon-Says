@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Media;
+using System.IO;
 
 namespace simonSaysProject
 {
@@ -58,7 +59,7 @@ namespace simonSaysProject
             {
                 pauseIndex = pauseIndex * 0.85;
             }
-            
+
             //Make Buttons un clickable during computer turn
             redButton.Enabled = false;
             redButton.BackColor = Color.Red;
@@ -68,7 +69,7 @@ namespace simonSaysProject
 
             blueButton.Enabled = false;
             blueButton.BackColor = Color.Blue;
-            
+
             yellowButton.Enabled = false;
             yellowButton.BackColor = Color.Yellow;
 

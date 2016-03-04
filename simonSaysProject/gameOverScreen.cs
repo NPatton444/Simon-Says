@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace simonSaysProject
 {
@@ -25,6 +26,19 @@ namespace simonSaysProject
             //Button Locations
             replayButton.Location = new Point(this.Width / 2 - replayButton.Width / 2, this.Height / 2 + 50);
             closeButton.Location = new Point(this.Width / 2 - closeButton.Width / 2, this.Height / 2 + 94);
+
+            //High Scores
+            string[] lines = File.ReadAllLines(Form1.filePath);
+            lines.Reverse();
+            for (int i = 0; i < lines.Count(); i++)
+            {
+                string[] split = lines[i].Split(':');
+
+                if (gameScreen.score > Convert.ToInt16(split[1]))
+                {
+                    
+                }
+            }
         }
 
         private void replayButton_Click(object sender, EventArgs e)
