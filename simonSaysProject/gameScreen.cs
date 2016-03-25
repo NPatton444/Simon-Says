@@ -16,11 +16,14 @@ namespace simonSaysProject
     public partial class gameScreen : UserControl
     {
         //Sound Player
-        SoundPlayer redPlayer = new SoundPlayer(Properties.Resources.red);
-        SoundPlayer bluePlayer = new SoundPlayer(Properties.Resources.blue);
-        SoundPlayer greenPlayer = new SoundPlayer(Properties.Resources.green);
-        SoundPlayer yellowPlayer = new SoundPlayer(Properties.Resources.yellow);
+        List<SoundPlayer> player = new List<SoundPlayer>();
         SoundPlayer mistakePlayer = new SoundPlayer(Properties.Resources.mistake);
+
+        //Button List
+        List<Button> button = new List<Button>();
+
+        //Colour List
+        List<Color> color = new List<Color>();
 
         //Guess index
         int index = 0;
@@ -48,10 +51,37 @@ namespace simonSaysProject
             //Game Starting Refresh
             this.Refresh();
 
+            //Add players to list
+            player.Add(new SoundPlayer(Properties.Resources.green));
+            player.Add(new SoundPlayer(Properties.Resources.red));
+            player.Add(new SoundPlayer(Properties.Resources.blue));
+            player.Add(new SoundPlayer(Properties.Resources.yellow));
+
+            //Add Buttons to list
+            button.Add(greenButton);
+            button.Add(redButton);
+            button.Add(blueButton);
+            button.Add(yellowButton);
+
+            //Add colours to list
+            color.Add(Color.Green);
+            color.Add(Color.Red);
+            color.Add(Color.Blue);
+            color.Add(Color.Yellow);
+            color.Add(Color.LightGreen);
+            color.Add(Color.LightCoral);
+            color.Add(Color.LightBlue);
+            color.Add(Color.LightYellow);
+
             //Go to Computer Turn method
             computerTurn();
         }
 
+        #region Computer Turn
+
+        /// <summary>
+        /// Runs logic for randomly picking buttons to flash
+        /// </summary>
         private void computerTurn()
         {
             //Decrease Pause Index to make game faster the longer it's been player
@@ -61,19 +91,14 @@ namespace simonSaysProject
             }
 
             //Make Buttons un clickable during computer turn
-            redButton.Enabled = false;
-            redButton.BackColor = Color.Red;
-
-            greenButton.Enabled = false;
-            greenButton.BackColor = Color.Green;
-
-            blueButton.Enabled = false;
-            blueButton.BackColor = Color.Blue;
-
-            yellowButton.Enabled = false;
-            yellowButton.BackColor = Color.Yellow;
+            for (int i = 0; i < button.Count; i++)
+            {
+                button[i].Enabled = false;
+                button[i].BackColor = color[i];
+            }
 
             this.Refresh();
+
 
             //Random Number Generator to pick Colour
             Random randGen = new Random();
@@ -94,66 +119,22 @@ namespace simonSaysProject
                 //Button Flash and Play Sound
                 if (Form1.pattern[i] == 0)
                 {
-                    Thread.Sleep(500);
-                    this.Refresh();
-
-                    //Play Sound
-                    greenPlayer.Play();
-
-                    //Flash Green Button
-                    greenButton.BackColor = Color.LightGreen;
-                    this.Refresh();
-                    Thread.Sleep(100);
-                    greenButton.BackColor = Color.Green;
-                    this.Refresh();
+                    flashes(0, 4);
                 }
 
                 else if (Form1.pattern[i] == 1)
                 {
-                    Thread.Sleep(500);
-                    this.Refresh();
-
-                    //Play Sound
-                    redPlayer.Play();
-
-                    //Flash Red Button
-                    redButton.BackColor = Color.LightCoral;
-                    this.Refresh();
-                    Thread.Sleep(100);
-                    redButton.BackColor = Color.Red;
-                    this.Refresh();
+                    flashes(1, 5);
                 }
 
                 else if (Form1.pattern[i] == 2)
                 {
-                    Thread.Sleep(500);
-                    this.Refresh();
-
-                    //Play Sound
-                    bluePlayer.Play();
-
-                    //Flash Blue Button
-                    blueButton.BackColor = Color.LightBlue;
-                    this.Refresh();
-                    Thread.Sleep(100);
-                    blueButton.BackColor = Color.Blue;
-                    this.Refresh();
+                    flashes(2, 6);
                 }
 
                 else if (Form1.pattern[i] == 3)
                 {
-                    Thread.Sleep(500);
-                    this.Refresh();
-
-                    //Play Sound
-                    yellowPlayer.Play();
-
-                    //Flash Yellow Button
-                    yellowButton.BackColor = Color.LightYellow;
-                    this.Refresh();
-                    Thread.Sleep(100);
-                    yellowButton.BackColor = Color.Yellow;
-                    this.Refresh();
+                    flashes(3, 7);
                 }
 
                 //Pause and Refresh
@@ -165,119 +146,75 @@ namespace simonSaysProject
             Thread.Sleep(500);
 
             //Re enable buttons
-            redButton.Enabled = true;
-            greenButton.Enabled = true;
-            blueButton.Enabled = true;
-            yellowButton.Enabled = true;
+            for(int i = 0; i < button.Count(); i++)
+            {
+                button[i].Enabled = true;
+            }
         }
+
+        /// <summary>
+        /// Makes buttons flash during computer turn
+        /// </summary>
+        /// <param name="buttonColor">Indexing for to pick button and color of button before and after flash</param>
+        /// <param name="color2">Indexing to pick color of button during flash</param>
+        private void flashes(int buttonColor, int color2)
+        {
+            Thread.Sleep(500);
+            this.Refresh();
+
+            //Play Sound
+            player[buttonColor].Play();
+
+            //Flash Yellow Button
+            button[buttonColor].BackColor = color[color2];
+            this.Refresh();
+            Thread.Sleep(100);
+            button[buttonColor].BackColor = color[buttonColor];
+            this.Refresh();
+        }
+
+        #endregion
 
         #region Player Turn
 
         private void greenButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Form1.pattern[index] == 0)
-            {
-                //Play Sound
-                greenPlayer.Play();
-
-                //Flash Green Button
-                greenButton.BackColor = Color.LightGreen;
-                this.Refresh();
-                Thread.Sleep(100);
-                greenButton.BackColor = Color.Green;
-                this.Refresh();
-
-                index++;
-
-                //Run Computer Turn Method
-                if (index == Form1.pattern.Count())
-                {
-                    Thread.Sleep(500);
-                    computerTurn();
-                }
-            }
-
-            else
-            {
-                //Go to Game over
-                gameOver();
-            }
+            playerTurn(0, 4);
         }
 
         private void redButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Form1.pattern[index] == 1)
-            {
-                //Play Sound
-                redPlayer.Play();
-
-                //Flash Red Button
-                redButton.BackColor = Color.LightCoral;
-                this.Refresh();
-                Thread.Sleep(100);
-                redButton.BackColor = Color.Red;
-                this.Refresh();
-
-                index++;
-
-                //Run Computer Turn Method
-                if (index == Form1.pattern.Count())
-                {
-                    Thread.Sleep(500);
-                    computerTurn();
-                }
-            }
-
-            else
-            {
-                //Go to Game over
-                gameOver();
-            }
+            playerTurn(1, 5);
         }
 
         private void blueButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Form1.pattern[index] == 2)
-            {
-                //Play Sound
-                bluePlayer.Play();
-
-                //Flash Blue Button
-                blueButton.BackColor = Color.LightBlue;
-                this.Refresh();
-                Thread.Sleep(100);
-                blueButton.BackColor = Color.Blue;
-                this.Refresh();
-
-                index++;
-
-                //Run Computer Turn Method
-                if (index == Form1.pattern.Count())
-                {
-                    Thread.Sleep(500);
-                    computerTurn();
-                }
-            }
-
-            else
-            {
-                //Go to Game over
-                gameOver();
-            }
+            playerTurn(2, 6);
         }
 
         private void yellowButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Form1.pattern[index] == 3)
+            playerTurn(3, 7);
+        }
+
+        /// <summary>
+        /// Logic to be repeated for flashing buttons when clicked during player turn. 
+        /// It also checks if it is the correct button. 
+        /// </summary>
+        /// <param name="colorCheck">Index for color and button list</param>
+        /// <param name="color2">Index for flash color</param>
+        private void playerTurn(int colorCheck, int color2)
+        {
+            if (Form1.pattern[index] == colorCheck)
             {
                 //Play Sound
-                yellowPlayer.Play();
+                player[colorCheck].Play();
 
                 //Flash Yellow Button
-                yellowButton.BackColor = Color.LightYellow;
+                button[colorCheck].BackColor = color[color2];
                 this.Refresh();
                 Thread.Sleep(100);
-                yellowButton.BackColor = Color.Yellow;
+                button[colorCheck].BackColor = color[colorCheck];
                 this.Refresh();
 
                 index++;

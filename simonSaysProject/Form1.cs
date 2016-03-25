@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ===============================
+// AUTHOR     : Noah Patton
+// CREATE DATE     : 02/25/16
+// PURPOSE     : This program is meant to be a knock off version of the original Simon Says game
+// SPECIAL NOTES: One of the special features of this game is that it slowly speeds up as the game 
+// game goes on to increase difficulty.
+// ===============================
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
