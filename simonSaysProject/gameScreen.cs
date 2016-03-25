@@ -152,27 +152,6 @@ namespace simonSaysProject
             }
         }
 
-        /// <summary>
-        /// Makes buttons flash during computer turn
-        /// </summary>
-        /// <param name="buttonColor">Indexing for to pick button and color of button before and after flash</param>
-        /// <param name="color2">Indexing to pick color of button during flash</param>
-        private void flashes(int buttonColor, int color2)
-        {
-            Thread.Sleep(500);
-            this.Refresh();
-
-            //Play Sound
-            player[buttonColor].Play();
-
-            //Flash Yellow Button
-            button[buttonColor].BackColor = color[color2];
-            this.Refresh();
-            Thread.Sleep(100);
-            button[buttonColor].BackColor = color[buttonColor];
-            this.Refresh();
-        }
-
         #endregion
 
         #region Player Turn
@@ -207,15 +186,7 @@ namespace simonSaysProject
         {
             if (Form1.pattern[index] == colorCheck)
             {
-                //Play Sound
-                player[colorCheck].Play();
-
-                //Flash Yellow Button
-                button[colorCheck].BackColor = color[color2];
-                this.Refresh();
-                Thread.Sleep(100);
-                button[colorCheck].BackColor = color[colorCheck];
-                this.Refresh();
+                flashes(colorCheck, color2);
 
                 index++;
 
@@ -235,6 +206,27 @@ namespace simonSaysProject
         }
 
         #endregion
+
+        /// <summary>
+        /// Makes buttons flash during computer turn or when clicked in player turn method
+        /// </summary>
+        /// <param name="buttonColor">Indexing for to pick button and color of button before and after flash</param>
+        /// <param name="color2">Indexing to pick color of button during flash</param>
+        private void flashes(int buttonColor, int color2)
+        {
+            Thread.Sleep(500);
+            this.Refresh();
+
+            //Play Sound
+            player[buttonColor].Play();
+
+            //Flash Yellow Button
+            button[buttonColor].BackColor = color[color2];
+            this.Refresh();
+            Thread.Sleep(100);
+            button[buttonColor].BackColor = color[buttonColor];
+            this.Refresh();
+        }
 
         private void gameOver()
         {
